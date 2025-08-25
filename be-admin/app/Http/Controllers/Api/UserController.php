@@ -32,10 +32,9 @@ class UserController extends Controller
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
-            'password_confirmation' => Hash::make($request->password),
         ]);
 
-        return new UserResource($user, true, 'User berhasil dibuat!', $user);
+        return new UserResource($user, true, 'User berhasil dibuat!');
     }
 
 

@@ -13,7 +13,7 @@ class UserResource extends JsonResource
     /**
      * Konstruktor dengan status, message, dan resource
      */
-    public function __construct($status = true, $message = '', $resource)
+    public function __construct($resource, $status = true, $message = '')
     {
         parent::__construct($resource);
         $this->status = $status;
