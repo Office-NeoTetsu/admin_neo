@@ -46,13 +46,37 @@ class UserController extends Controller
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'     => 'nullable|string|max:255',
+            'email'    => 'nullable|string|email|max:255|unique:user,email,' . $id,
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $user = User::find($id);
+
+        $user->update([
+            'name' => $request->name ?? $user->name,
+            'email' => $request->email ?? $user->email,
+            'password' => $request->filled('password')
+                ? Hash::make($request->password)
+                : $user->password,
+        ]);
+
+        return new UserResource(true, 'Data User Berhasil Diubah!', $user);
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        $user->delete();
+
+        return new UserResource(true, 'Data User Berhasil Dihapus', null);
     }
 }
