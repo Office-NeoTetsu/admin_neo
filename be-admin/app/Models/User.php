@@ -17,6 +17,8 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    // Dalam Model/User.php
+    protected $table = 'user';
     protected $fillable = [
         'name',
         'email',
