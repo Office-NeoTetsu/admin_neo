@@ -38,9 +38,11 @@ class UserController extends Controller
     }
 
 
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        return new UserResource($user, true, 'Detail Data Product!');
     }
 
 
