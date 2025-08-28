@@ -19,7 +19,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'     => 'required|string|max:255',
+            'username'     => 'required|string|max:255',
             'email'    => 'required|string|email|max:255|unique:user',
             'password' => 'required|string|min:8|confirmed',
         ]);
@@ -29,7 +29,7 @@ class UserController extends Controller
         }
 
         $user = User::create([
-            'name'     => $request->name,
+            'username'     => $request->username,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -49,7 +49,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name'     => 'nullable|string|max:255',
+            'username'     => 'nullable|string|max:255',
             'email'    => 'nullable|string|email|max:255|unique:user,email,' . $id,
             'password' => 'nullable|string|min:8|confirmed',
         ]);
@@ -61,7 +61,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         $user->update([
-            'name' => $request->name ?? $user->name,
+            'username' => $request->username ?? $user->username,
             'email' => $request->email ?? $user->email,
             'password' => $request->filled('password')
                 ? Hash::make($request->password)
