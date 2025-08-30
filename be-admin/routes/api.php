@@ -12,5 +12,6 @@ use App\Http\Controllers\Api\UserController;
 // })->middleware('auth:sanctum');
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/verify-pin', [AuthController::class, 'verifyPin'])->middleware('auth:sanctum');
 Route::apiResource('/user', UserController::class)->middleware('auth:sanctum');
 
