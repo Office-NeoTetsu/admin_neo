@@ -41,11 +41,11 @@ class User extends Authenticatable
         'email',
         'password',
         'first_name',
-        'last_name',
+        //'last_name',
         'phone_1',
-        'phone_2',
+        //'phone_2',
         'role',
-        'pin',
+        //'pin',
         'status',
     ];
 

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('phone_1');
             $table->string('phone_2')->nullable();
             $table->enum('role', ['member', 'admin'])->default('member');
-            $table->string('pin');
+            $table->string('pin')->nullable();
             $table->enum('status', ['aktif', 'tidak aktif', 'suspend'])->default('aktif');
             $table->rememberToken();
             $table->timestamps();
